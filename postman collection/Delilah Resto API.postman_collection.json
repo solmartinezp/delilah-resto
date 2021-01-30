@@ -1,0 +1,699 @@
+{
+	"info": {
+		"_postman_id": "1becbb5d-3543-4b5a-8a03-24c9f6695b9b",
+		"name": "Delilah Resto API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "DELILAH ",
+			"item": [
+				{
+					"name": "REGISTER",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"user\": \"sol\",\r\n        \"name\": \"sol\",\r\n        \"last_name\": \"martinez\",\r\n        \"password\": \"passwordSol\",\r\n        \"email\": \"sol@gmail.com\",\r\n        \"phone_number\": \"11-555-7898\",\r\n        \"address\": \"Austria 1901\",\r\n        \"admin\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/users/register",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    pm.environment.set('authToken', pm.response.json().token);\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"user\": \"sol\",\r\n    \"password\": \"passwordSol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/users/login",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL USERS",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaW50cjRuc2l0IiwidXNlcl9pZCI6MTUsImFkbWluIjoiMCIsImlhdCI6MTYxMTE3MDcyOH0.s25qLy1WoplmFVYIfu0E2HHp4-rIqN-l8T3ww93MZic",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/users",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET PROFILE USER",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiaW50cjRuc2l0IiwidXNlcl9pZCI6MTUsImFkbWluIjoiMCIsImlhdCI6MTYxMTE3MDcyOH0.s25qLy1WoplmFVYIfu0E2HHp4-rIqN-l8T3ww93MZic",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://{{url}}/users/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2222"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL PRODUCTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/products",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE PRODUCT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"name\": \"Milanesa con fritas\",\r\n        \"description\": \"Milanesa de carne con papas fritas\",\r\n        \"price\": \"500.00\",\r\n        \"stock\": 200\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/products",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE PRODUCT",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"price\": 100\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/products/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE PRODUCT",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/products/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD FAVORITE",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/users/:id/products/:idProduct/favorites",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"products",
+								":idProduct",
+								"favorites"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								},
+								{
+									"key": "idProduct",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE FAVORITES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/users/:id/favorites",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"favorites"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE FAVORITE",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/users/:id/favorites/:idProd",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"users",
+								":id",
+								"favorites",
+								":idProd"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3"
+								},
+								{
+									"key": "idProd",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ADD TO CART",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/cart/orders/products/:idProduct",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cart",
+								"orders",
+								"products",
+								":idProduct"
+							],
+							"variable": [
+								{
+									"key": "idProduct",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE CART",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/cart/orders/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cart",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE FROM CART",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/cart/orders/:idOrder/products/:idProduct",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"cart",
+								"orders",
+								":idOrder",
+								"products",
+								":idProduct"
+							],
+							"variable": [
+								{
+									"key": "idOrder",
+									"value": "33"
+								},
+								{
+									"key": "idProduct",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHECKOUT",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/checkout/orders/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"checkout",
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CHANGE ORDER STATUS",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idStatus\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/orders/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ONE ORDER",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ALL ORDERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE PENDING ORDERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/pending",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ORDERS IN PROGRESS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/inprogress",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"inprogress"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ORDERS READY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/ready",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"ready"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ORDERS SHIPPED",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/shipped",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"shipped"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ORDERS DELIVERED",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/delivered",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"delivered"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SEE ORDERS CANCELLED",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/cancelled",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								"cancelled"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE ORDER",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://{{url}}/orders/:id",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"orders",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{authToken}}",
+						"type": "string"
+					},
+					{
+						"key": "password",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
